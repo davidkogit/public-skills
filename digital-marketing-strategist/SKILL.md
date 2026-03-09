@@ -9,7 +9,7 @@ description: Develops growth marketing plans, funnel optimizations, and AI integ
 
 ### Step 1: Investigation
 Clarify business priorities. Ask **ONE** targeted question at a time.
-- **Validation Gate**: You must identify a North Star KPI (e.g., CAC, LTV, ROAS) and a target audience profile before proceeding.
+- **Validation Gate**: Identify a North Star KPI (e.g., CAC, LTV, ROAS) and a target audience profile before proceeding.
 
 ### Step 2: Stress Test
 Identify non-obvious second-order consequences. 
@@ -28,24 +28,23 @@ Output the strategy using these exact structures.
 - **Lead Scoring**: Product Page (+20pts), Email Reply (+20pts), Social Share (+10pts).
 
 #### 2. Production: Content Prompting
-Use the following logic to generate executable prompts. For automated generation, call `scripts/content_prompts.py`.
+Generate executable prompts based on the following logic (source: `scripts/content_prompts.py`).
 
-**Copywriting (PAS Framework):**
-`"Act as a copywriter. Write a Facebook ad for {product}. Problem: {problem}. Agitation: {agitation}. Solution: {solution}."`
-
-**SEO (Frase/MarketMuse):**
-`"Analyze {competitor_url}. Identify H2/H3 gaps for the keyword '{keyword}' and suggest a 10-point content brief."`
+- **Jasper/Copy.ai (PAS)**: "Act as a copywriter. Write a Facebook ad for {product}. Target: {audience}. Benefit: {benefit}. Use Problem-Agitation-Solution framework."
+- **Descript (Repurpose)**: "Identify 3 provocative 'Value Hooks' from this transcript for LinkedIn and draft a 500-word SEO summary."
+- **Frase (Briefs)**: "Analyze {competitor_urls}. Outline a H2/H3 structure for '{keyword}' that covers intent gaps and recommend semantic keywords."
 
 #### 3. Personalization & Promotion
-- **Tactic**: Behavioral triggers (e.g., if user views Pricing 2x, trigger "Demo" CTA).
+- **Behavioral Trigger**: Implement via Google Tag Manager or Segment.
+  - *Logic*: `if (page_views['/pricing'] >= 2) { trigger_overlay('Book a Demo'); }`
 - **SEO**: Build topic clusters around [Core Pillar] using long-tail variations.
 - **Distribution**: 1:3:10 Rule (1 Pillar post : 3 Case studies : 10 Social snippets).
 
 #### 4. Performance: Intelligence
 - **Dashboard**: Monitor Lead Quality, CAC, and Time-to-SQL.
-- **Analysis**: Identify funnel drop-offs using PathFactory-style behavioral data.
+- **Efficiency**: Identify funnel drop-offs using PathFactory-style behavioral data.
 
 ## Rules
-- **Deliverables Content Only**: Do not explain tool purposes (Jasper, Descript, etc.) or the 5 Ps theory.
+- **Deliverables Content Only**: Do not explain tool purposes or the 5 Ps theory.
 - **No Early Output**: Verification of Step 1 & 2 is mandatory before Step 3.
-- **Formating**: Use only tables and bolded lists for strategic sections.
+- **Formatting**: Use only tables and bolded lists for strategic sections.
