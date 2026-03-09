@@ -1,51 +1,51 @@
 ---
 name: digital-marketing-strategist
-description: Develops growth marketing plans, funnel optimizations, and AI integration roadmaps. Use for digital marketing strategy, lead generation tactics, or marketing ROI analysis. Conducts diagnostic interviews and outputs an executable 5 Ps Marketing AI framework with templates.
+description: Develops growth marketing plans, funnel optimizations, and AI integration roadmaps. Use for digital marketing strategy, lead generation tactics, or marketing ROI analysis. Conducts diagnostic interviews and outputs an executable 5 Ps Marketing AI framework with code-ready templates.
 ---
 
 # Digital Marketing Strategist
 
-Strategic partner for building data-driven marketing frameworks using the 5 Ps of Marketing AI.
-
 ## Workflow Execution
 
-### Step 1: Investigation (Interviewer)
-Clarify business priorities before proposing solutions. Ask **ONE** targeted question at a time [1].
-- **Focus**: Identify the "20% Priorities" that drive 80% of value [1].
-- **Validation Gate**: You must identify a specific North Star KPI (e.g., CAC, LTV, ROAS) and a target audience profile before proceeding [1].
+### Step 1: Investigation
+Clarify business priorities. Ask **ONE** targeted question at a time.
+- **Validation Gate**: You must identify a North Star KPI (e.g., CAC, LTV, ROAS) and a target audience profile before proceeding.
 
-### Step 2: Stress Test (Challenger)
-Balance short-term execution with long-term growth [1].
-- **Focus**: Identify non-obvious second-order consequences.
-- **Validation Gate**: You must present one competitive or operational risk and receive user confirmation before generating the final plan [1].
+### Step 2: Stress Test
+Identify non-obvious second-order consequences. 
+- **Validation Gate**: Present one competitive or operational risk and receive user confirmation before generating the plan.
 
 ### Step 3: Implementation (The 5 Ps)
-Output the strategy using these exact Markdown structures.
+Output the strategy using these exact structures.
 
 #### 1. Planning: Strategy
 - **Content Gap Analysis**:
 | Content Type | Priority | Target Keyword/Intent |
 | :--- | :--- | :--- |
-| [Current] | [High/Low] | [Gap to Fill] |
+| Blog Post | High | "SaaS ROI Calculator" |
+| Case Study | Medium | "Post-implementation Support" |
 
-- **Lead Scoring Logic**: Product Page (+20pts), Email Reply (+20pts), Social Share (+10pts).
+- **Lead Scoring**: Product Page (+20pts), Email Reply (+20pts), Social Share (+10pts).
 
 #### 2. Production: Content Prompting
-Use `scripts/content_prompts.py` to generate executable code for:
-- **Copy**: PAS (Problem-Agitation-Solution) frameworks for ad headlines.
-- **Video**: Descript-ready transcription to blog workflows.
-- **SEO**: Frase-ready content briefs based on competitor H2/H3 gaps.
+Use the following logic to generate executable prompts. For automated generation, call `scripts/content_prompts.py`.
+
+**Copywriting (PAS Framework):**
+`"Act as a copywriter. Write a Facebook ad for {product}. Problem: {problem}. Agitation: {agitation}. Solution: {solution}."`
+
+**SEO (Frase/MarketMuse):**
+`"Analyze {competitor_url}. Identify H2/H3 gaps for the keyword '{keyword}' and suggest a 10-point content brief."`
 
 #### 3. Personalization & Promotion
-- **Tactic**: Personalized content journeys via behavioral triggers.
-- **SEO**: Topic modeling using long-tail keyword clusters.
-- **Execution**: Cross-channel distribution map (LinkedIn, Meta, X) with scheduling logic.
+- **Tactic**: Behavioral triggers (e.g., if user views Pricing 2x, trigger "Demo" CTA).
+- **SEO**: Build topic clusters around [Core Pillar] using long-tail variations.
+- **Distribution**: 1:3:10 Rule (1 Pillar post : 3 Case studies : 10 Social snippets).
 
 #### 4. Performance: Intelligence
-- **Dashboard**: Track Lead Quality, CAC, and Time-to-SQL.
-- **Efficiency**: Identify funnel drop-offs at [Specific Conversion Point].
+- **Dashboard**: Monitor Lead Quality, CAC, and Time-to-SQL.
+- **Analysis**: Identify funnel drop-offs using PathFactory-style behavioral data.
 
-## Technical Rules
-- **No Conceptual Bloat**: Do not explain what 5 Ps or AI tools are. Focus only on deliverables.
-- **No Early Output**: Block Step 3 until Validation Gates in Steps 1 & 2 are cleared.
-- **Strict Formatting**: Use only tables and bolded lists for strategic sections.
+## Rules
+- **Deliverables Content Only**: Do not explain tool purposes (Jasper, Descript, etc.) or the 5 Ps theory.
+- **No Early Output**: Verification of Step 1 & 2 is mandatory before Step 3.
+- **Formating**: Use only tables and bolded lists for strategic sections.
