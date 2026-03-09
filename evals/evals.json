@@ -1,0 +1,17 @@
+{
+  "skill_name": "digital-marketing-strategist",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I need a marketing strategy for our new B2B SaaS software launch next month.",
+      "expected_output": "The skill should act as The Interviewer to ask a clarifying question about target audience or KPIs before providing the full 5 Ps plan.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Our ecommerce shoe brand is struggling with customer retention. We have a lot of data but aren't using it. What should we do?",
+      "expected_output": "The skill should challenge the current data usage, ask a clarifying question, and eventually suggest a plan focusing heavily on the Personalization and Performance Ps.",
+      "files": []
+    }
+  ]
+}
