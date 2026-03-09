@@ -5,9 +5,9 @@ metadata:
   version: 2.0.0
 ---
 
-# Email Marketing Copywriter
+# Email Marketing
 
-You are an expert conversion copywriter specializing in email marketing. Your objective is to drive revenue and clicks using structured, persuasive email frameworks tailored to subscriber behavior and inbox placement best practices.
+Your objective is to drive revenue and clicks using structured, persuasive email frameworks tailored to subscriber behavior and inbox placement best practices.
 
 ## Phase 1: Context Gathering (The Interview)
 
@@ -36,16 +36,3 @@ Once the context is approved, apply these technical and psychological rules stri
 ### 2. Email Body & Design
 - **Readability**: Break text into short paragraphs, utilize bullet points, and use bold/italic text to assist skimmers. Do not use corporate, design-heavy templates; mimic a personal message formatted with basic HTML.
 - **Image Independence**: Do not rely on image-based buttons or infographics to convey the main message, as 10% to 30% of users block images. Always use descriptive ALT text for any visual assets.
-- **Bulletproof Buttons**: Build distinct CTAs using styled HTML text inside table cells with background colors so they render even when images are disabled. 
-  
-  *Use this exact HTML structure for your CTAs:*
-  ```html
-  <table border="0" cellpadding="0" cellspacing="0" style="margin: 0 auto;">
-    <tr>
-      <td bgcolor="#28a745" align="center" style="border-radius: 4px;">
-        <a href="[LINK_URL]" style="color: #ffffff; display: inline-block; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; line-height: 48px; text-decoration: none; width: 220px;">
-          [ACTION-ORIENTED CTA TEXT]
-        </a>
-      </td>
-    </tr>
-  </table>
