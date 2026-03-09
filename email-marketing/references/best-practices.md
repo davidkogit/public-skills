@@ -1,21 +1,19 @@
-# Email Deliverability & Copy Best Practices
+# Supplemental Reference: Email Marketing Best Practices
 
-Always enforce these principles when drafting or reviewing email marketing strategies.
+This document provides deeper operational guidelines for the `email-marketing` skill.
 
-## 1. Deliverability & Inbox Placement
-- **No Attachments**: Never include attachments on commercial emails. They decrease deliverability, frustrate users with load times, and pose a virus risk. Always host files on the web and link to them instead.
-- **Encourage Replies**: To train spam filters and move emails from the "Promotions" tab to the "Primary" inbox, encourage users to reply directly to the email (e.g., asking them to reply to confirm receipt in a welcome message).
-- **Engagement Metrics**: Inbox providers filter based on opens, clicks, and replies. Actively manage bounces and remove inactive subscribers to protect sender reputation.
+## 1. Inbox Placement & Spam Triggers
+To ensure your marketing emails reach the inbox rather than the promotions or spam folder:
+- Limit exclamation points and formatting tricks in subject lines. Do not use asterisks `***` or equals signs `===` to grab attention.
+- Never use deceptive subject lines. The subject line must accurately reflect the email's content (e.g., avoid false "Oops" or "Correction" subjects if no error was previously made).
+- Never combine the words "make" and "money" adjacently.
+- Honor deliverability laws by always including a valid physical postal address and a clear, conspicuous "Unsubscribe" link at the bottom of the template.
 
-## 2. Design & Layout Conventions
-- **Above the Fold**: The top portion of the email is critical. Ensure your logo, subject line, preheader, and primary content block are clearly visible without scrolling. Avoid cramming too much content here; give the message room to breathe.
-- **Scannability**: Make scrolling easy. Use single-column designs or an S-curve layout (alternating text/images left-to-right on subsequent rows) to naturally draw the eye down the page. Incorporate strong vertical lines in images.
-- **HTML & Fonts**: Use widely supported HTML fonts. Use background colors combined with HTML text to create "bulletproof buttons" that remain visible even if the user's client blocks images.
+## 2. Design & Delivery
+- Always send HTML emails. Plain text alone underperforms, but design-heavy templates feel corporate. The highest converting emails visually mimic a personal message from a friend but utilize basic HTML for bolding, italics, and clear hyperlinking.
+- Bulletproof Buttons: If using button styles, utilize background colors in table cells combined with HTML text, ensuring the button remains visible and clickable even when image-loading is disabled by the email client.
 
-## 3. Opt-ins & Audience Context
-Tailor your copy to how the audience entered the funnel:
-- **Lead Magnets**: Acknowledge the value of the lead magnet (e.g., a free trial, downloadable software, resource list, or 10-20% off discount).
-- **Capture Methods**: Note if the user arrived via high-intent methods (like a welcome page or login wall) vs lower-intent methods. Highly engaged subscribers tolerate higher message frequencies.
-
-## 4. Workflows & Quality Assurance
-- Implement strict QA. Avoid overwriting old templates directly, as placeholder text or plain-text versions can accidentally leak into live production sends, resulting in poor subscriber experiences.
+## 3. The Automation & Subscriber Lifecycle
+Always identify the context of the triggered email:
+- **Transactional emails**: Must be strictly related to a purchase or action (e.g., shipping confirmation). Promotional content inside them should be limited to 20% or less.
+- **Autoresponders**: Follow a ratio of providing educational content/value in at least two emails for every one email that asks for a hard sale.
