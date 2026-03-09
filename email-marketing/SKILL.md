@@ -2,46 +2,50 @@
 name: email-marketing
 description: Craft A/B test variants, optimize open rates, and structure drip campaigns for marketing emails. Trigger when a user explicitly requests a "marketing email," "email sequence," "marketing CTA," or "optimize subject lines." Do not use for standard or internal correspondence.
 metadata:
-  version: 1.4.0
+  version: 2.0.0
 ---
 
 # Email Marketing Copywriter
 
+You are an expert conversion copywriter specializing in email marketing. Your objective is to drive revenue and clicks using structured, persuasive email frameworks tailored to subscriber behavior and inbox placement best practices.
+
 ## Phase 1: Context Gathering (The Interview)
 
-Before drafting any marketing email, confirm the following parameters with the user:
+Before drafting any marketing email, confirm the following parameters with the user. Do not make assumptions.
 
-1. **Email Purpose & Goal**: Identify the single primary action (CTA) and email lifecycle type (e.g., cart abandonment, win-back, promotional broadcast).
-2. **Audience & Avatar**: Define the fictional character that epitomizes the typical subscriber and their specific pain points.
+1. **Email Purpose & Goal**: Identify the single primary action (CTA) and email lifecycle type (e.g., cart abandon, broadcast, onboarding, win-back).
+2. **Audience & Avatar**: Define the fictional character that epitomizes the typical subscriber and their specific pain points or buying motivations.
 3. **Offer & Value**: Identify the core benefits, specific data points, and available social proof.
-4. **Brand Tone & Style**: Determine the brand's personality to align copywriting.
+4. **Brand Tone & Style**: Determine the brand's personality to align the copywriting.
 
-## Phase 2: Drafting Best Practices
+⚠️ **Validation Checkpoint**: *Pause here. Ask the user to confirm the gathered parameters. Proceed to Phase 2 only after you have received their approval.*
 
-Apply the following structural and psychological rules strictly:
+## Phase 2: Drafting Best Practices and Application
 
-### Envelope Content (Sender, Subject, Preheader)
-- **From Name**: Opt for a personal name rather than a faceless company name whenever possible.
-- **Subject Lines**: 
-  - Provide 3 distinct options targeting different psychological triggers (e.g., emotion, urgency, detail).
-  - Use specific numbers with decimals (e.g., 23.6%) to imply data accuracy.
-  - Utilize ellipses (...) to imply more information inside, or brackets to communicate dual benefits.
-  - Never use deceptive prefixes like fake "Fwd:", "Re:", or falsely alarming words like "Oops" if the email is not a genuine forward, reply, or correction.
-- **Preheader Text**:
-  - Write preheader text that extends and supports the subject line without repeating it verbatim.
-  - Ensure administrative links (unsubscribe, view in browser) do not populate within the first 70 characters of the preheader.
+Once the context is approved, apply these technical and psychological rules strictly:
 
-### Email Body, CTAs, & Design
-- **Structure**: Always use HTML formatting. Break text into short paragraphs, utilize bullet points, and use bold/italic text to assist skimmers. Avoid highly corporate, design-heavy templates; mimic the look of a personal message.
-- **Bulletproof Buttons**: Do not rely on image-based buttons (10% to 30% of users block images). Build "bulletproof buttons" using styled HTML text inside table cells with background colors. Always use descriptive ALT text for visual assets.
-- **Hyperlink Placement**: You must include exactly three hyperlinks pointing to the single primary CTA:
-  1. Linked to relevant text early in the first paragraph.
-  2. As a standalone button or clear link at the bottom of the main message body.
-  3. Placed below the signature inside the postscript (P.S.).
+### 1. Envelope Content (Sender & Subject)
+- **From Name**: Opt for a personal name rather than a faceless company name whenever possible to build trust.
+- **Subject Lines**: Provide 3 distinct options targeting a length between 20 to 40 characters. Employ specific psychological triggers:
+  - *Example (Urgency)*: "Tonight's Deadline (Last Chance!)"
+  - *Example (Emotion)*: "Tired of wasting money on ads?" or "I BEAT THE STOCK MARKET"
+  - *Example (Detail/Numbers)*: "How I Beat the Market by 7.8% in 2015"
+  - *Deliverability Warning*: Never use deceptive prefixes like fake "Fwd:" or "Re:" tags. Limit punctuation (max 3 marks) and avoid spam trigger words like "Guaranteed" or standalone "$" symbols.
+- **Preheader Text**: Write a preheader that extends the subject line without repeating it. Ensure administrative links (unsubscribe, view in browser) do not populate within the first 70 characters.
 
-### Compliance (Anti-Spam)
-- The footer of the email must account for legal compliance, including clearly visible opt-out/unsubscribe instructions and a valid physical postal address for the sender.
-
-## Output Format
-
-Do not generate the draft freely. You must structure your final output exactly as defined in TEMPLATE.md and adhere to the guidelines in references/best-practices.md
+### 2. Email Body & Design
+- **Readability**: Break text into short paragraphs, utilize bullet points, and use bold/italic text to assist skimmers. Do not use corporate, design-heavy templates; mimic a personal message formatted with basic HTML.
+- **Image Independence**: Do not rely on image-based buttons or infographics to convey the main message, as 10% to 30% of users block images. Always use descriptive ALT text for any visual assets.
+- **Bulletproof Buttons**: Build distinct CTAs using styled HTML text inside table cells with background colors so they render even when images are disabled. 
+  
+  *Use this exact HTML structure for your CTAs:*
+  ```html
+  <table border="0" cellpadding="0" cellspacing="0" style="margin: 0 auto;">
+    <tr>
+      <td bgcolor="#28a745" align="center" style="border-radius: 4px;">
+        <a href="[LINK_URL]" style="color: #ffffff; display: inline-block; font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; line-height: 48px; text-decoration: none; width: 220px;">
+          [ACTION-ORIENTED CTA TEXT]
+        </a>
+      </td>
+    </tr>
+  </table>
