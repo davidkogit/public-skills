@@ -1,82 +1,47 @@
 ---
 name: email-marketing
-description: Craft A/B test variants, optimize open rates, and structure drip campaigns for marketing emails. Use to draft newsletters, sales autoresponders, welcome series, cart abandonment sequences, and promotional blasts. Trigger when a user explicitly requests a "marketing email," "email sequence," "marketing CTA," or "optimize subject lines." Do not use for standard or internal interpersonal email correspondence.
+description: Craft A/B test variants, optimize open rates, and structure drip campaigns for marketing emails. Trigger when a user explicitly requests a "marketing email," "email sequence," "marketing CTA," or "optimize subject lines." Do not use for standard or internal correspondence.
 metadata:
-  version: 1.2.0
+  version: 1.4.0
 ---
 
 # Email Marketing Copywriter
 
 ## Phase 1: Context Gathering (The Interview)
 
-Before drafting any marketing email, gather context to establish the following parameters. (Confirm these if the user has already provided them):
+Before drafting any marketing email, confirm the following parameters with the user:
 
-1. **Email Purpose & Goal**: 
-   - What is the single primary action (CTA) you want the subscriber to take?
-   - What type of marketing email is this? (e.g., welcome broadcast, win-back, promotional).
-2. **Audience & Avatar**: 
-   - Who is the ideal subscriber/customer?
-   - What pain points caused them to join this list?
-3. **Offer & Value**: 
-   - What are the core benefits (not features) of the product/service?
-   - Are there specific numbers, stats, or social proof available?
-4. **Brand Tone & Style**:
-   - What is the brand's personality? (e.g., professional, witty, urgent).
+1. **Email Purpose & Goal**: Identify the single primary action (CTA) and email lifecycle type (e.g., cart abandonment, win-back, promotional broadcast).
+2. **Audience & Avatar**: Define the fictional character that epitomizes the typical subscriber and their specific pain points.
+3. **Offer & Value**: Identify the core benefits, specific data points, and available social proof.
+4. **Brand Tone & Style**: Determine the brand's personality to align copywriting.
 
 ## Phase 2: Drafting Best Practices
 
-Adhere strictly to these rules when drafting:
+Apply the following structural and psychological rules strictly:
 
-### Subject Lines & Preview Text
-- Provide **3 distinct subject line options** for A/B testing.
-- Target a length of 20 to 40 characters. 
-- **Examples of Good vs. Bad Subject Lines:**
-  - *Good (Specific/Emotional):* "REVEALED: The 7 Fastest Ways To Lose 10 Pounds in 10 Days"
-  - *Good (Personal/Curiosity):* "how I beat the stock market"
-  - *Bad (Boring/Vague):* "Lose Weight Fast"
-  - *Bad (Misleading):* "Fwd: Mom will love this" (Never use fake "Fwd:" or "Re:" tags)
-- Provide optimized preview text (preheader) that extends the subject line without repeating it verbatim.
+### Envelope Content (Sender, Subject, Preheader)
+- **From Name**: Opt for a personal name rather than a faceless company name whenever possible.
+- **Subject Lines**: 
+  - Provide 3 distinct options targeting different psychological triggers (e.g., emotion, urgency, detail).
+  - Use specific numbers with decimals (e.g., 23.6%) to imply data accuracy.
+  - Utilize ellipses (...) to imply more information inside, or brackets to communicate dual benefits.
+  - Never use deceptive prefixes like fake "Fwd:", "Re:", or falsely alarming words like "Oops" if the email is not a genuine forward, reply, or correction.
+- **Preheader Text**:
+  - Write preheader text that extends and supports the subject line without repeating it verbatim.
+  - Ensure administrative links (unsubscribe, view in browser) do not populate within the first 70 characters of the preheader.
 
-### Email Body & Formatting
-- **Write for Scanners**: Use short paragraphs, bullet points, and highlight key phrases using bold or italics.
-- **Image Independence**: Do not rely on images to convey key information. 10% to 30% of subscribers block images. Always use descriptive ALT text.
-- **Spam Avoidance**: Do not use the word "Guaranteed", avoid using the "$" symbol, and limit punctuation to no more than 3 marks in the subject line.
+### Email Body, CTAs, & Design
+- **Structure**: Always use HTML formatting. Break text into short paragraphs, utilize bullet points, and use bold/italic text to assist skimmers. Avoid highly corporate, design-heavy templates; mimic the look of a personal message.
+- **Bulletproof Buttons**: Do not rely on image-based buttons (10% to 30% of users block images). Build "bulletproof buttons" using styled HTML text inside table cells with background colors. Always use descriptive ALT text for visual assets.
+- **Hyperlink Placement**: You must include exactly three hyperlinks pointing to the single primary CTA:
+  1. Linked to relevant text early in the first paragraph.
+  2. As a standalone button or clear link at the bottom of the main message body.
+  3. Placed below the signature inside the postscript (P.S.).
 
-### Calls-to-Action (CTA) The "One CTA" Rule
-- Establish ONE primary objective per email. Do not dilute the click-through rate with multiple competing actions.
-- Place the hyperlink a minimum of twice in the email body (e.g., once in an early paragraph and once prominently at the bottom/P.S.).
-- **Examples of Good vs. Bad CTA Copy:**
-  - *Good (Action/Value-oriented):* "Sign-Up Now (Free)" or "Show Me The Latest Fall Styles"
-  - *Bad (Generic/High-friction):* "Submit" or "Click Here"
+### Compliance (Anti-Spam)
+- The footer of the email must account for legal compliance, including clearly visible opt-out/unsubscribe instructions and a valid physical postal address for the sender.
 
-## Output Format & Structural Template
+## Output Format
 
-Present your completed draft using the following exact layout:
-
-### Strategic Rationale
-*(Brief statement explaining the angle chosen and how it aligns with the target audience.)*
-
-### Envelope Content
-- **Subject Line A:** [Option 1]
-- **Subject Line B:** [Option 2]
-- **Subject Line C:** [Option 3]
-- **Preheader Text:** [Preheader copy]
-
-### Email Body Draft
-*(Strictly follow this layout format for the main content)*
-
-**Hi [Name] –**
-
-*(The Hook: 1-2 short sentences establishing the pain point, curiosity, or value proposition immediately)*
-
-*(The Body: 2-3 short paragraphs explaining the benefit or story. Focus entirely on the reader's needs. Include bolded text for skimmers.)*
-
-**[Primary Call To Action - Action-Oriented Text Link e.g., "Sign-Up Now (Free)"]**
-
-*(The Transition: 1 brief paragraph summarizing the risk reversal, providing social proof, or adding urgency).*
-
-**[Primary Call To Action - Repeated Text Link]**
-
-**[Sign-off / From Name]**
-
-**P.S.** *(Use the postscript as a highly visible secondary sales tool to reiterate the deadline, repeat the call-to-action, or remind them of a guarantee).*
+Do not generate the draft freely. You must structure your final output exactly as defined in TEMPLATE.md and adhere to the guidelines in references/best-practices.md
