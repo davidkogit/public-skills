@@ -22,8 +22,8 @@ Adapt to the column structure of the baseline tracker provided by the user.
   * *Expected rowsData structure:*
     ```javascript
     const rowsData = [
-        ["Order Export - Reference ID", "Done", "SMCC", "Verified via Postman [1]."],
-        ["Order Export - Ship Method", "In Progress", "Joseph", "Querying shipitem based on subsidiary [2]."]
+        ["Order Export - Reference ID", "Done", "IT", "Verified via Postman [1]."],
+        ["Order Export - Ship Method", "In Progress", "Joe", "Querying shipitem based on subsidiary [2]."]
     ];
     ```
     **CRITICAL**: You MUST preserve all bracketed citations (e.g., [1], [19]) exactly as written within the 'Action Item / Details' column in the `.docx` document. Do not strip them from the script.
