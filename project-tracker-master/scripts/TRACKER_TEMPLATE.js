@@ -15,7 +15,7 @@ function createStatusRun(statusText) {
     const symbol = (statusText.includes("Done") || statusText.includes("Ready")) ? "🟢 " : ((statusText.includes("Blocked") || statusText.includes("Open")) ? "🔴 " : "🟡 ");
 
     return [
-        new TextRun({ text: symbol, font: "Arial", size: 22 }),
+        new TextRun({ text: symbol, font: "Segoe UI Emoji", size: 22 }),
         new TextRun({ text: statusText, font: "Arial", size: 22, bold: true, color: color })
     ];
 }
