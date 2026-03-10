@@ -58,3 +58,4 @@ Please find below a summary of the technical implementations, resolved blockers,
 2. **Citation Preservation (Document)**: Bracketed citations MUST remain in the `.docx`.
 3. **Citation Stripping (Email Only)**: Remove citations ONLY in the email text you output to the user.
 4. **Detailed Notes Section**: ALL detailed notes and citations from the baseline tracker/meeting must be transcribed at the bottom of the `.docx` file.
+5. **Status Icons (Document)**: You MUST retain the colored status balls (🟢, 🟡, 🔴) in the `Status` column text when generating the rowsData array.
