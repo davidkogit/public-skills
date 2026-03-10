@@ -73,18 +73,20 @@ rowsData.forEach(r => {
 });
 
 // Helper for appended Detailed Notes
-function createNote(segments) {
-    const runs = [];
-    segments.forEach(seg => {
-        runs.push(new TextRun({ 
-            text: seg.text, 
-            font: "Arial", 
-            size: 22,
-            shading: seg.highlight ? { type: ShadingType.CLEAR, fill: "F2F2F2" } : undefined
-        }));
+function createNote(text) {
+    return new Paragraph({ 
+        children: [new TextRun({ text: text, font: "Arial", size: 22 })],
+        spacing: { after: 120 } 
     });
-    return new Paragraph({ children: runs, spacing: { after: 120 } });
 }
+
+// INJECT DETAILED NOTES ARRAY HERE
+const detailedNotes = [
+    "[1] Order Export Field Mapping: The orderReferenceID field in Intershop maps directly to NetSuite's otherrefnum (PO #).",
+    "[2] Order Export Ship Method: Ship Method custom (custbody_shipmethod) and native (shipmethod) endpoints remain fluid."
+];
+
+const noteParagraphs = detailedNotes.map(note => createNote(note));
 
 const doc = new Document({
     sections: [{
@@ -110,8 +112,7 @@ const doc = new Document({
                 children: [new TextRun({ text: "Detailed Notes & Citations", font: "Arial", size: 26, color: "005BBB", bold: true })],
                 spacing: { before: 240, after: 240 }
             }),
-            // INJECT GENERATED NOTES HERE
-            createNote([{ text: "[1] Detailed note corresponding to the table citation." }])
+            ...noteParagraphs
         ]
     }]
 });
