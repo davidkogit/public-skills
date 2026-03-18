@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase Deep Dive: {{PHASE_NAME}}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a2e;
+            --paper: #faf9f7;
+            --accent-gold: #c9a227;
+            --accent-copper: #b87333;
+            --critical: #c41e3a;
+            --important: #e07c24;
+            --nice: #2d6a4f;
+            --muted: #6b7280;
+            --card-bg: #ffffff;
+            --border: #e5e2dd;
+            --shadow: rgba(26, 26, 46, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            padding: 0;
+        }
+
+        .document {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: var(--paper);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--ink) 0%, #16213e 100%);
+            color: var(--paper);
+            padding: 4rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(201, 162, 39, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(184, 115, 51, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .brand {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .project-subtitle {
+            font-size: 1.1rem;
+            color: rgba(250, 249, 247, 0.8);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        /* Main Content */
+        main {
+            padding: 3rem;
+        }
+
+        /* Context Section */
+        .phases-overview {
+            margin-bottom: 3rem;
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .context-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 1.75rem;
+            border-left: 4px solid var(--accent-gold);
+        }
+
+        .context-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        .context-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Action Items Section */
+        .action-items {
+            margin-bottom: 3rem;
+        }
+
+        .phase-block {
+            margin-bottom: 3rem;
+            break-inside: avoid;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        .phase-block-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .phase-block-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            background: var(--ink);
+            color: var(--paper);
+            padding: 0.3rem 0.6rem;
+            letter-spacing: 0.1em;
+        }
+
+        .phase-block-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        .priority-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .priority-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .priority-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-left: 3px solid;
+            background: rgba(0, 0, 0, 0.02);
+        }
+
+        .priority-critical .priority-label {
+            color: var(--critical);
+            border-color: var(--critical);
+        }
+
+        .priority-important .priority-label {
+            color: var(--important);
+            border-color: var(--important);
+        }
+
+        .priority-nice .priority-label {
+            color: var(--nice);
+            border-color: var(--nice);
+        }
+
+        .task-list {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        .task-list li {
+            position: relative;
+            padding: 0.6rem 0;
+            padding-left: 1.5rem;
+            border-bottom: 1px dashed var(--border);
+            line-height: 1.5;
+        }
+
+        .task-list li:last-child {
+            border-bottom: none;
+        }
+
+        .task-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 1rem;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        .priority-critical .task-list li::before {
+            background: var(--critical);
+        }
+
+        .priority-important .task-list li::before {
+            background: var(--important);
+        }
+
+        .priority-nice .task-list li::before {
+            background: var(--nice);
+        }
+
+        /* Intelligence Section */
+        .risks-section {
+            background: linear-gradient(135deg, #fef3f2 0%, #fff7ed 100%);
+            border: 1px solid rgba(196, 30, 58, 0.15);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .risks-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--critical), var(--important));
+        }
+
+        .risks-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .risk-icon {
+            font-size: 1.2rem;
+        }
+
+        .risks-list {
+            list-style: none;
+        }
+
+        .risks-list li {
+            padding: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .risks-list li:last-child {
+            border-bottom: none;
+        }
+
+        .risks-list li::before {
+            content: '⚠';
+            position: absolute;
+            left: 0;
+            top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .risk-category {
+            font-weight: 600;
+            color: var(--critical);
+        }
+
+        .intelligence-section h3 {
+            margin: 1.5rem 0 0.75rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+        }
+
+        .execution-sequence {
+            background: rgba(0,0,0,0.02);
+            padding: 1rem;
+            border-left: 3px solid var(--important);
+            margin: 0.75rem 0;
+        }
+
+        .quick-win {
+            border-left: 3px solid var(--nice);
+            padding-left: 1rem;
+            margin: 0.5rem 0;
+            background: rgba(45, 106, 79, 0.05);
+        }
+
+        /* Next Step CTA */
+        .next-step {
+            background: var(--ink);
+            color: var(--paper);
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .next-step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-copper));
+        }
+
+        .next-step-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+
+        .next-step-action {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .next-step-why {
+            font-size: 0.95rem;
+            color: rgba(250, 249, 247, 0.7);
+            max-width: 700px;
+            line-height: 1.7;
+        }
+
+        .next-step-why strong {
+            color: var(--paper);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 3rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            color: var(--muted);
+        }
+
+        .footer-brand {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+            
+            .document {
+                max-width: none;
+            }
+            
+            header, .next-step {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .phase-block {
+                box-shadow: none;
+                break-inside: avoid;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .phase-block {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .phase-block:nth-child(1) { animation-delay: 0.1s; }
+        .phase-block:nth-child(2) { animation-delay: 0.2s; }
+        .phase-block:nth-child(3) { animation-delay: 0.3s; }
+        .phase-block:nth-child(4) { animation-delay: 0.4s; }
+        .phase-block:nth-child(5) { animation-delay: 0.5s; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 2.5rem 1.5rem;
+            }
+            
+            main {
+                padding: 2rem 1.5rem;
+            }
+            
+            .phase-block {
+                padding: 1.5rem;
+            }
+            
+            footer {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <header>
+            <div class="header-content">
+                <div class="brand">Phase Deep Dive Expert</div>
+                <h1>PHASE DEEP DIVE: {{PHASE_NAME}}</h1>
+                <p class="project-subtitle">{{PHASE_OBJECTIVE}}</p>
+            </div>
+        </header>
+
+        <main>
+            <!-- Context Section -->
+            <section class="phases-overview">
+                <div class="section-label">Phase Context</div>
+                <div class="context-card">
+                    <p><strong>Original Phase:</strong> Phase {{PHASE_NUMBER}} of {{TOTAL_PHASES}}</p>
+                    <p><strong>Expert Role:</strong> {{EXPERT_PERSONA}}</p>
+                    <p><strong>Focus Area:</strong> {{PHASE_DOMAIN}}</p>
+                    <p><strong>Project:</strong> {{PROJECT_TITLE}}</p>
+                </div>
+            </section>
+
+            <!-- Expanded Action Items -->
+            <section class="action-items">
+                <div class="section-label">Expanded Action Items</div>
+                {{ACTION_ITEMS_BLOCKS}}
+            </section>
+
+            <!-- Phase-Specific Intelligence -->
+            <section class="risks-section">
+                <h2 class="risks-title">
+                    <span class="risk-icon">⚡</span>
+                    Phase-Specific Intelligence
+                </h2>
+                
+                <div class="intelligence-section">
+                    <h3 style="color: var(--critical);">Risks & Pitfalls</h3>
+                    <ul class="risks-list">
+                        {{RISKS_LIST}}
+                    </ul>
+                </div>
+                
+                <div class="intelligence-section">
+                    <h3 style="color: var(--important);">Execution Sequence</h3>
+                    <div class="execution-sequence">
+                        <p><strong>Recommended Order:</strong></p>
+                        <ol style="margin: 0.5rem 0 0 1.5rem;">
+                            {{EXECUTION_ORDER}}
+                        </ol>
+                        <p style="margin-top: 0.75rem;"><strong>Why this order:</strong> {{EXECUTION_RATIONALE}}</p>
+                    </div>
+                </div>
+                
+                <div class="intelligence-section">
+                    <h3 style="color: var(--nice);">Quick Wins</h3>
+                    {{QUICK_WINS}}
+                </div>
+                
+                <div class="intelligence-section">
+                    <h3 style="color: var(--ink);">Success Metrics</h3>
+                    <ul style="list-style: disc; margin-left: 1.5rem;">
+                        {{SUCCESS_METRICS}}
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <!-- Recommended Next Step -->
+        <section class="next-step">
+            <div class="next-step-label">Phase Completion Criteria</div>
+            <div class="next-step-action">{{COMPLETION_DELIVERABLE}}</div>
+            <p class="next-step-why">
+                <strong>Before moving to next phase:</strong> {{COMPLETION_REQUIREMENTS}}
+            </p>
+        </section>
+
+        <footer>
+            <div class="footer-brand">PHASE DEEP DIVE EXPERT</div>
+            <div>Generated {{DATE}}</div>
+        </footer>
+    </div>
+</body>
+</html>
